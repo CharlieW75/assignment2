@@ -1,6 +1,10 @@
-errorbar_plot <- function(data, alpha = 0.5, ...) {
+errorbar_plot <- function(data, alpha = 0.5, sanitise = FALSE, ...) {
   if (!is.data.frame(data) || !all(c("time", "magnitude", "errorbar") %in% names(data))) {
     stop("Input must be a data frame with columns: time, magnitude, and errorbar")
+  }
+
+  if (sanitise) {
+    data <- sanitise(data)
   }
 
   ylim_range <- range(data$magnitude - data$errorbar,
