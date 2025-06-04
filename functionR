@@ -1,11 +1,11 @@
-errorbar_plot <- function(data, ...) {
+errorbar_plot <- function(data, alpha = 0.5, ...) {
   ylim_range <- range(data$magnitude - data$errorbar,
                       data$magnitude + data$errorbar)
   plot(data$time, data$magnitude, ylim = ylim_range,
-       pch = 16, col = adjustcolor("black", alpha.f = 0.5),
+       pch = 16, col = adjustcolor("black", alpha.f = alpha),
        xlab = "time", ylab = "magnitude", ...)
   arrows(data$time, data$magnitude - data$errorbar,
          data$time, data$magnitude + data$errorbar,
          angle = 90, code = 3, length = 0.02,
-         col = adjustcolor("black", alpha.f = 0.5))
+         col = adjustcolor("black", alpha.f = alpha))
 }
